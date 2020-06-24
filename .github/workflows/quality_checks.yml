@@ -9,6 +9,20 @@ on:
       - 'master'
 
 jobs:
+  Rubocop:
+    name: Rubocop
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.5
+      - name: Install Rubocop
+        run: |
+          gem install rubocop -v 0.60.0
+          gem install rubocop-rspec -v 1.30.1
+      - name: Check code
+        run: rubocop
   tests:
     runs-on: ubuntu-latest
     services:
