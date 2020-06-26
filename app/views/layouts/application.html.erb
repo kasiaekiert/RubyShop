@@ -5,12 +5,35 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= javascript_pack_tag 'application' %>
+    <%= stylesheet_pack_tag 'application' %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'navigation' %>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+          <%= render 'products_carousel' %>
+          <%= yield %>
+        </div>
+        <!-- /.col-lg-9 -->
+        <div class="col-lg-3">
+          <%= render 'sidebar' %>
+        </div>
+        <!-- /.col-lg-3 -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container -->
+
+    <footer class="py-2 bg-dark fixed-bottom">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Ruby Lovers <%= Date.current.year %></p>
+      </div>
+      <!-- /.container -->
+    </footer>
   </body>
 
-  <%= stylesheet_pack_tag 'application', media: 'all' %>
+  <%= javascript_pack_tag 'application' %>
 </html>
