@@ -1,1 +1,14 @@
 require: rubocop-rails
+
+AllCops:
+  Exclude:
+    - db/**/**
+    - features/support/env.rb
+    - config/**/**
+    - test/**/**
+    - bin/**/**
+    - node_modules/**/**
+Metrics/LineLength:
+  Max: 120
+Metrics/ClassLength:
+  Max: 200
