@@ -1,6 +1,9 @@
-require: rubocop-rails
+require:
+  - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
+  NewCops: enable
   Exclude:
     - db/**/**
     - features/support/env.rb
@@ -8,7 +11,15 @@ AllCops:
     - test/**/**
     - bin/**/**
     - node_modules/**/**
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
 Metrics/ClassLength:
   Max: 200
+Style/BlockComments:
+  Enabled: false
+Bundler/OrderedGems:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
