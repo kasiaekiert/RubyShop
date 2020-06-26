@@ -10,22 +10,21 @@
 
   <body>
     <%= render 'navigation' %>
+    <%= render 'flash_messages' %>
 
     <div class="container">
       <div class="row">
         <div class="col-lg-9">
           <%= render 'products_carousel' %>
+
           <%= yield %>
-        </div>
-        <!-- /.col-lg-9 -->
+        </div> <!-- /.col-lg-9 -->
+
         <div class="col-lg-3">
           <%= render 'sidebar' %>
-        </div>
-        <!-- /.col-lg-3 -->
-      </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.container -->
+        </div><!-- /.col-lg-3 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
   </body>
 
   <%= javascript_pack_tag 'application' %>
