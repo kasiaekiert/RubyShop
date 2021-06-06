@@ -11,11 +11,18 @@ gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 4.0'
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'ransack'
 
 group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails', '~> 4.0.0'
+end
+
+group :test do
+  gem 'capybara'
   gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'shoulda-matchers', '~> 4.0'
 end
 
 group :development do

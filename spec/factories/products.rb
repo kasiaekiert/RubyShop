@@ -1,6 +1,9 @@
 FactoryBot.define do
   factory :product do
-    name { "MyString" }
-    price { "9.99" }
+    name { Faker::Book }
+    price { 10.00 }
+    image { 'MyString' }
+    category
+    brand
   end
 end
