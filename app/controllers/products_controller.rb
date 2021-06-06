@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   def index
     @categories = Category.all
     @brands = Brand.all
-
+    @products = Product.all
     @search = Product.search(params[:q])
     @products = @search.result.joins(:category, :brand)
   end
