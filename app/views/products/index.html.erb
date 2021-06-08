@@ -2,8 +2,8 @@
 
 <%= search_form_for @search, url: search_products_path, method: :post do |f| %>
   <div class="field">
-    <%= f.label :name_cont_any, "Name" %>
-    <%= f.text_field :name_cont_any %>
+    <%= f.label :name_cont, "Name" %>
+    <%= f.text_field :name_cont %>
   </div>
 
   <h5>Categories:</h5>

@@ -1,122 +1,55 @@
  require 'rails_helper'
 
 RSpec.describe "/products", type: :request do
-  # Product. As you add validations to Product, be sure to
-  # adjust the attributes here as well.
-
-  #let(:invalid_attributes) {
-  #  skip("Add a hash of attributes invalid for your model")
-  #}
-
   describe "GET /" do
     it "renders a successful response" do
       get root_path
+      
       expect(response).to have_http_status(200)
     end
   end
 
-  describe "GET /index (filters)" do
-    it "renders a successful response" do
-      #Product.create! valid_attributes
-      # /products?q
-      get "/products?utf8=&q%5B#{name}"      
+  describe "GET /index show products on page" do
+    let!(:products) { create_list(:product, 3) }
+    
+    it "shows products on page" do
+      get "/products"
       expect(response).to be_successful
+    end
+
+    it "GET /index returns products on page after filtering" do
+      get "/products", params: { q: { name_cont: products.first.name } }
+
+      expect(response.body).to include(products.first.name)
+      expect(response.body).to_not include(products.second.name)
+    end
+
+    it "GET /index returns products on page after filtering on category" do
+      get "/products", params: { q: { category_id_in: products.first.category_id } }
+
+      expect(response.body).to include(products.first.name)
+      expect(response.body).to_not include(products.second.name)
+    end
+
+    it "GET /index returns products on page after filtering on category" do
+      get "/products", params: { q: { brand_id_in: products.first.brand_id } }
+
+      expect(response.body).to include(products.first.name)
+      expect(response.body).to_not include(products.third.name)
+    end
+
+    it "GET /index returns products on page after filtering on category and brand" do
+      get "/products", params: { q: { brand_id_in: products.first.brand_id, category_id_in: products.first.category_id } }
+      
+      expect(response.body).to include(products.first.name)
+      expect(response.body).to_not include(products.second.name)
     end
   end
 
-  #describe "GET /show" do
-  #  it "renders a successful response" do
-  #    product = Product.create! valid_attributes
-  #    get product_url(product)
+  #describe "GET /index (filters)" do
+  #  it "filter products by category" do
+  #    get "/products?utf8=&q%5B#{name}"
   #    expect(response).to be_successful
-  #  end
-  #end
-#
-  #describe "GET /new" do
-  #  it "renders a successful response" do
-  #    get new_product_url
-  #    expect(response).to be_successful
-  #  end
-  #end
-#
-  #describe "GET /edit" do
-  #  it "render a successful response" do
-  #    product = Product.create! valid_attributes
-  #    get edit_product_url(product)
-  #    expect(response).to be_successful
-  #  end
-  #end
-#
-  #describe "POST /create" do
-  #  context "with valid parameters" do
-  #    it "creates a new Product" do
-  #      expect {
-  #        post products_url, params: { product: valid_attributes }
-  #      }.to change(Product, :count).by(1)
-  #    end
-#
-  #    it "redirects to the created product" do
-  #      post products_url, params: { product: valid_attributes }
-  #      expect(response).to redirect_to(product_url(Product.last))
-  #    end
-  #  end
-#
-  #  context "with invalid parameters" do
-  #    it "does not create a new Product" do
-  #      expect {
-  #        post products_url, params: { product: invalid_attributes }
-  #      }.to change(Product, :count).by(0)
-  #    end
-#
-  #    it "renders a successful response (i.e. to display the 'new' template)" do
-  #      post products_url, params: { product: invalid_attributes }
-  #      expect(response).to be_successful
-  #    end
-  #  end
-  #end
-#
-  #describe "PATCH /update" do
-  #  context "with valid parameters" do
-  #    let(:new_attributes) {
-  #      skip("Add a hash of attributes valid for your model")
-  #    }
-#
-  #    it "updates the requested product" do
-  #      product = Product.create! valid_attributes
-  #      patch product_url(product), params: { product: new_attributes }
-  #      product.reload
-  #      skip("Add assertions for updated state")
-  #    end
-#
-  #    it "redirects to the product" do
-  #      product = Product.create! valid_attributes
-  #      patch product_url(product), params: { product: new_attributes }
-  #      product.reload
-  #      expect(response).to redirect_to(product_url(product))
-  #    end
-  #  end
-#
-  #  context "with invalid parameters" do
-  #    it "renders a successful response (i.e. to display the 'edit' template)" do
-  #      product = Product.create! valid_attributes
-  #      patch product_url(product), params: { product: invalid_attributes }
-  #      expect(response).to be_successful
-  #    end
-  #  end
-  #end
-
-  #describe "DELETE /destroy" do
-  #  it "destroys the requested product" do
-  #    product = Product.create! valid_attributes
-  #    expect {
-  #      delete product_url(product)
-  #    }.to change(Product, :count).by(-1)
-  #  end
-#
-  #  it "redirects to the products list" do
-  #    product = Product.create! valid_attributes
-  #    delete product_url(product)
-  #    expect(response).to redirect_to(products_url)
   #  end
   #end
 end
