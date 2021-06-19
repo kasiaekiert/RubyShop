@@ -1,10 +1,10 @@
- require 'rails_helper'
+require 'rails_helper'
 
 RSpec.describe "/products", type: :request do
   describe "GET /" do
     it "renders a successful response" do
       get root_path
-      
+
       expect(response).to have_http_status(200)
     end
   end
@@ -40,7 +40,7 @@ RSpec.describe "/products", type: :request do
 
     it "GET /index returns products on page after filtering on category and brand" do
       get "/products", params: { q: { brand_id_in: products.first.brand_id, category_id_in: products.first.category_id } }
-      
+
       expect(response.body).to include(products.first.name)
       expect(response.body).to_not include(products.second.name)
     end
