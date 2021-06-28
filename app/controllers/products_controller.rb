@@ -1,5 +1,8 @@
 class ProductsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_product, only: %i[show edit update destroy]
+  # before_action :set_user
+  # before_action :check_authorization, only: [:edit, :update, :destroy]
 
   # GET /products
   def index
@@ -48,13 +51,19 @@ class ProductsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_product
     @product = Product.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def product_params
     params.require(:product).permit(:name, :price, :image).permit(:category_id, :brand_id)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
+  end 
+
+  def check_authorization
+    authorize! :manage, @user
   end
 end
