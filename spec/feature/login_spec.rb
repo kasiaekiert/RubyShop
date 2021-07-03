@@ -115,4 +115,21 @@ RSpec.describe 'Create new user', type: :feature do
       expect(page).to have_link('Log out')
     end
   end
+
+  context 'user has not an access to admin panel' do
+    let(:user) { create(:user) }
+    before do 
+      visit root_path
+      click_link 'Log in'
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      click_button 'Log in'
+    end
+
+    it 'has not access to admin panel' do
+      visit rails_admin_path
+
+      expect(page).to have_content 'You are not authorized'
+    end 
+  end
 end

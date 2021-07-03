@@ -7,4 +7,12 @@ FactoryBot.define do
     end
     password { 'password123' }
   end
+
+  factory :admin_user, parent: :user do
+    email { 'admin@example.com' }
+    password { 'password' }
+    admin { true }
+    admin_role { true }
+    role { 1 }
+  end
 end

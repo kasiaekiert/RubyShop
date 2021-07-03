@@ -12,6 +12,7 @@ class Ability
     end
     if user.user?
       can :read, :all
+      cannot :access, :rails_admin
     end
    
     # If you pass :manage it will apply to every action. Other common actions

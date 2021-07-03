@@ -1,8 +1,5 @@
 class ProductsController < ApplicationController
-  load_and_authorize_resource
   before_action :set_product, only: %i[show edit update destroy]
-  # before_action :set_user
-  # before_action :check_authorization, only: [:edit, :update, :destroy]
 
   # GET /products
   def index
