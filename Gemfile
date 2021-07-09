@@ -13,8 +13,6 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 4.0'
-gem 'rails_admin_rollincode', '~> 1.0'
-gem 'rails_admin', git: 'https://github.com/sferik/rails_admin.git'
 gem 'ransack'
 
 group :development, :test do
