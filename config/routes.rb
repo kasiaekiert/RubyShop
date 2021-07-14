@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :admins, except: :create
+  devise_for :admin, except: :create
   devise_for :users
 
   namespace :admin do

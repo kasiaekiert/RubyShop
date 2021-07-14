@@ -6,15 +6,6 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user (not logged in)
 
-    if user.admin?
-      can :manage, :all
-      can :access, :rails_admin 
-    end
-    if user.user?
-      can :read, :all
-      cannot :access, :rails_admin
-    end
-   
     # If you pass :manage it will apply to every action. Other common actions
     # here are :read, :create, :update and :destroy.
     #
