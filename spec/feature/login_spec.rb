@@ -127,7 +127,7 @@ RSpec.describe 'Create new user', type: :feature do
     end
 
     it 'has not access to admin panel' do
-      visit rails_admin_path
+      visit admin_root_path
 
       expect(page).to have_content 'You are not authorized'
     end 

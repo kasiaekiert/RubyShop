@@ -46,10 +46,9 @@ RSpec.describe 'Log in as an Admin user', type: :feature do
     end
 
     it 'has access to admin panel' do
-      visit rails_admin_path
+      visit admin_root_path
 
-      expect(page).to have_content 'Site Administration'
-    end 
+      expect(page).to have_content 'Admin Panel'
+    end
   end
-
 end

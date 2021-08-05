@@ -12,7 +12,6 @@ FactoryBot.define do
     email { 'admin@example.com' }
     password { 'password' }
     admin { true }
-    admin_role { true }
     role { 1 }
   end
 end

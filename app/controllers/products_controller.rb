@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
-      redirect_to @product, notice: 'Product was successfully created.'
+      redirect_to root_path, notice: 'Product was successfully created.'
     else
       render :new
     end
@@ -34,7 +34,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   def update
     if @product.update(product_params)
-      redirect_to @product, notice: 'Product was successfully updated.'
+      redirect_to product_path(@product), notice: 'Product was successfully updated.'
     else
       render :edit
     end
@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   def destroy
     @product.destroy
-    redirect_to products_url, notice: 'Product was successfully destroyed.'
+    redirect_to product_path, notice: 'Product was successfully destroyed.'
   end
 
   private
@@ -53,14 +53,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :price, :image).permit(:category_id, :brand_id)
-  end
-
-  def set_user
-    @user = User.find(params[:id])
-  end 
-
-  def check_authorization
-    authorize! :manage, @user
+    params.require(:product).permit(:name, :price, :image, :category_id, :brand_id)
   end
 end

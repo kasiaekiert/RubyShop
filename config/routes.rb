@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "admin#dashboard"
+    resources :products
   end
 
   root to: "products#index"
