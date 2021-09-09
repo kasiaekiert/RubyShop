@@ -1,6 +1,6 @@
 <h1>Products</h1>
 
-<%= search_form_for @search, url: search_products_path, method: :post do |f| %>
+<%= search_form_for @search, url: products_path do |f| %>
   <div class="field">
     <%= f.label :name_cont, "Name" %>
     <%= f.text_field :name_cont %>
