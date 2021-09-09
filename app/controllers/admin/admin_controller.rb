@@ -19,6 +19,10 @@ class Admin::AdminController < ApplicationController
 
   def edit; end
 
+  def new
+    @product = Product.new
+  end 
+
   def create
     @product = Product.new(product_params)
 
@@ -29,7 +33,6 @@ class Admin::AdminController < ApplicationController
     end
   end
 
-  # PATCH/PUT /products/1
   def update
     if @product.update(product_params)
       redirect_to admin_root_path, notice: 'Product was successfully updated.'
@@ -38,13 +41,16 @@ class Admin::AdminController < ApplicationController
     end
   end
 
-  # DELETE /products/1
   def destroy
     @product.destroy
     redirect_to admin_root_path, notice: 'Product was successfully destroyed.'
   end
 
   private
+
+  def set_product
+    @product = Product.find(params[:id])
+  end
 
   def product_params
     params.require(:product).permit(:name, :price, :image, :category_id, :brand_id)

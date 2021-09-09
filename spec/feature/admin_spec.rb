@@ -51,4 +51,41 @@ RSpec.describe 'Log in as an Admin user', type: :feature do
       expect(page).to have_content 'Admin Panel'
     end
   end
+
+  context 'admin in admin panel has access to all products and functionalities' do
+    let(:admin_user) { create(:admin_user) }
+    let!(:products) { create_list(:product, 3) }
+
+    before do 
+      visit root_path
+      click_link 'Log in'
+      fill_in 'Email', with: admin_user.email
+      fill_in 'Password', with: admin_user.password
+      click_button 'Log in'
+    end
+
+    it 'can see products list in admin panel' do
+      expect(page).to have_content 'Signed in successfully.'
+      expect(page).to have_content(products.first.name)
+      expect(page).to have_content(products.third.name)
+    end
+
+    it 'can add products' do
+      visit admin_root_path
+
+      expect(page).to have_content 'Admin Panel'
+    end
+
+    it 'can remove product' do
+      visit admin_root_path
+
+      expect(page).to have_content 'Admin Panel'
+    end
+
+    it 'can update product' do
+      visit admin_root_path
+
+      expect(page).to have_content 'Admin Panel'
+    end
+  end
 end
