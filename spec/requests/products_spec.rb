@@ -45,11 +45,4 @@ RSpec.describe "/products", type: :request do
       expect(response.body).to_not include(products.second.name)
     end
   end
-
-  #describe "GET /index (filters)" do
-  #  it "filter products by category" do
-  #    get "/products?utf8=&q%5B#{name}"
-  #    expect(response).to be_successful
-  #  end
-  #end
 end

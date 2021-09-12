@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+  devise_for :admin, except: :create
   devise_for :users
-  resources :brands
-  resources :categories
-  root to: "products#index"
-  resources :products do
-    collection { post :search, to: "products#index" }
+
+  namespace :admin do
+    resources :products
+
+    root to: "admin#dashboard"
   end
+
+  resources :products
+
+  root to: "products#index"
 end

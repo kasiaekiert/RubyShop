@@ -1,27 +1,33 @@
-class ProductsController < ApplicationController
-  before_action :set_product, only: %i[show edit update destroy]
-  skip_before_action :authenticate_user!, only: [:index]
+# frozen_string_literal: true
 
-  def index
+class Admin::AdminController < ApplicationController
+  before_action :user_admin_authenticate
+
+  def user_admin_authenticate
+    unless current_user.admin?
+      flash[:alert] = 'You are not authorized'
+      redirect_to root_path
+    end
+  end
+
+  def dashboard
     @categories = Category.all
     @brands = Brand.all
     @search = Product.ransack(params[:q])
     @products = @search.result.joins(:category, :brand)
   end
 
-  def show; end
+  def edit; end
 
   def new
     @product = Product.new
-  end
-
-  def edit; end
+  end 
 
   def create
     @product = Product.new(product_params)
 
     if @product.save
-      redirect_to root_path, notice: 'Product was successfully created.'
+      redirect_to admin_root_path, notice: 'Product was successfully created.'
     else
       render :new
     end
@@ -29,7 +35,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      redirect_to product_path(@product), notice: 'Product was successfully updated.'
+      redirect_to admin_root_path, notice: 'Product was successfully updated.'
     else
       render :edit
     end
@@ -37,7 +43,7 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy
-    redirect_to product_path, notice: 'Product was successfully destroyed.'
+    redirect_to admin_root_path, notice: 'Product was successfully destroyed.'
   end
 
   private
