@@ -18,12 +18,12 @@ gem 'ransack'
 group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails', '~> 4.0.0'
+  gem 'faker'
 end
 
 group :test do
   gem 'capybara'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'shoulda-matchers', '~> 4.0'
 end
 
