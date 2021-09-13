@@ -9,13 +9,13 @@
   <h5>Categories:</h5>
   <% @categories.each do |category| %>
     <%= f.check_box :category_id_in, {multiple: true}, category.id, nil %>
-    <%= category.name %> <br>
+    <%= category.name %>
   <% end %>
 
   <h5>Brands:</h5>
   <% @brands.each do |brand| %>
     <%= f.radio_button :brand_id_in, brand.id, {multiple: true} %>
-    <%= brand.name %> <br>
+    <%= brand.name %>
   <% end %>
 
   <%= f.submit "Search" %>
