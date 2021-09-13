@@ -32,7 +32,8 @@ RSpec.describe 'Log in as an Admin user', type: :feature do
 
   context 'admin has access to admin panel' do
     let(:admin_user) { create(:admin_user) }
-    before do 
+
+    before do
       visit root_path
       click_link 'Log in'
       fill_in 'Email', with: admin_user.email
@@ -56,7 +57,7 @@ RSpec.describe 'Log in as an Admin user', type: :feature do
     let(:admin_user) { create(:admin_user) }
     let!(:products) { create_list(:product, 3) }
 
-    before do 
+    before do
       visit root_path
       click_link 'Log in'
       fill_in 'Email', with: admin_user.email

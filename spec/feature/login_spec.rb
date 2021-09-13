@@ -118,7 +118,8 @@ RSpec.describe 'Create new user', type: :feature do
 
   context 'user has not an access to admin panel' do
     let(:user) { create(:user) }
-    before do 
+
+    before do
       visit root_path
       click_link 'Log in'
       fill_in 'Email', with: user.email
@@ -130,6 +131,6 @@ RSpec.describe 'Create new user', type: :feature do
       visit admin_root_path
 
       expect(page).to have_content 'You are not authorized'
-    end 
+    end
   end
 end

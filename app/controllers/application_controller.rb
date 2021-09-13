@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
   private
 
   def unauthorized
-    redirect_to root_path, flash: "You are not authorized"
+    redirect_to root_path, flash: 'You are not authorized'
   end
 end
