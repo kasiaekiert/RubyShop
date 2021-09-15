@@ -8,6 +8,7 @@ ruby '2.6.6'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'cancancan'
 gem 'devise'
+gem 'faker'
 gem 'rails', '~> 6.1.3'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
@@ -18,7 +19,6 @@ gem 'ransack'
 group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails', '~> 4.0.0'
-  gem 'faker'
 end
 
 group :test do
