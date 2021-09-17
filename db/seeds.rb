@@ -16,7 +16,9 @@ admin = User.create(email:'admin@example.com', password: 'password', admin: true
 end
 
 10.times do
-  product = Product.create(name: Faker::Device.model_name,
+  product = Product.create(name: Faker::Device.unique.model_name,
                           brand: Brand.all.sample,
+                          price: Faker::Number.decimal(l_digits: 2),
+                          image: Faker::LoremFlickr.image,
                           category: Category.all.sample)
 end
